@@ -17,9 +17,10 @@ test('MSP Provide Login Test Suite', async ({page}) => {
     await dashboardPage.selectSalesChannel('VBI - Carrier');
     await dashboardPage.enterEndCustomerName('Spyder Tech');
     await dashboardPage.selectSalesCountry('India');
-    await dashboardPage.enterCustomerContact('Manjunath V');
-    await dashboardPage.enterCustomerEmail('manju@gmail.com');
-    await dashboardPage.enterCustomerNumber('9876543210');
+    await dashboardPage.enterCustomerContact('Manjunath V' , 'manju@gmail.com' , '9876543210');
+    // await dashboardPage.enterCustomerContact('Manjunath V');
+    // await dashboardPage.enterCustomerEmail('manju@gmail.com');
+    // await dashboardPage.enterCustomerNumber('9876543210');
     await dashboardPage.enterVodafoneManager('Ajay Kumar');
     await dashboardPage.enterManagerEmail('ajay@vodafone.com');
     await dashboardPage.enterManagerNumber('9123456780');

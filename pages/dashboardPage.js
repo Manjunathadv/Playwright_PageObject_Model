@@ -77,19 +77,21 @@ exports.DashboardPage = class dashboardPage {
     async selectSalesCountry(country) {
         await this.salesCountry.click();
         await this.page.getByRole('option', { name: country, exact: true }).click()
-
-
     }
 
-
-    async enterCustomerContact(contact) {
+        async enterCustomerContact(contact , email , number) {
         await this.customerContact.pressSequentially(contact);
-    }
-    async enterCustomerEmail(email) {
         await this.customerEmail.fill(email);
-    }
-    async enterCustomerNumber(number) {
         await this.customerNumber.fill(number);
+    }
+    // async enterCustomerContact(contact) {
+    //     await this.customerContact.pressSequentially(contact);
+    // }
+    // async enterCustomerEmail(email) {
+    //     await this.customerEmail.fill(email);
+    // }
+    // async enterCustomerNumber(number) {
+    //     await this.customerNumber.fill(number);
     }
     async enterVodafoneManager(manager) {
         await this.vodafoneManager.pressSequentially(manager);
