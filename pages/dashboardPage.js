@@ -54,10 +54,10 @@ exports.DashboardPage = class dashboardPage {
     }
 
     async enterDateSigned(date) {
-        const todayDayNumber3 = getTodayDayNumberString();
+        const todayDayNumber = getTodayDayNumberString();
         await this.dateSigned.click();
         await this.page.getByRole('button', { name: 'Choose date' }).click();
-        await this.page.getByRole('gridcell', { name: todayDayNumber3 }).click();
+        await this.page.getByRole('gridcell', { name: todayDayNumber }).click();
     }
 
 
