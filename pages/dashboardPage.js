@@ -79,41 +79,20 @@ exports.DashboardPage = class dashboardPage {
         await this.page.getByRole('option', { name: country, exact: true }).click()
     }
 
-        async enterCustomerContact(contact , email , number) {
+        async enterCustomerDetails(contact , email , number) {
         await this.customerContact.pressSequentially(contact);
         await this.customerEmail.fill(email);
         await this.customerNumber.fill(number);
     }
-    // async enterCustomerContact(contact) {
-    //     await this.customerContact.pressSequentially(contact);
-    // }
-    // async enterCustomerEmail(email) {
-    //     await this.customerEmail.fill(email);
-    // }
-    // async enterCustomerNumber(number) {
-    //     await this.customerNumber.fill(number);
-    }
-    async enterVodafoneManager(manager) {
+        async enterVodafoneManagerDetails(manager , email , number) {
         await this.vodafoneManager.pressSequentially(manager);
-    }
-    async enterManagerEmail(email) {
         await this.managerEmail.fill(email);
-    }
-    async enterManagerNumber(number) {
         await this.managerNumber.fill(number);
     }
-    async enterTechnicalContact(contact) {
+        async enterTechnicalContactDetails(contact , email , number) {
         await this.technicalContact.pressSequentially(contact);
-    }
-    async enterTechnicalEmail(email) {
         await this.technicalEmail.fill(email);
-    }
-    async enterTechnicalNumber(number) {
         await this.technicalNumber.fill(number);
     }
-
-    async logout() {
-        await this.openProfileMenu();
-        await this.logoutButton.click();
-    }
+    
 }
