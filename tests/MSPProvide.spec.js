@@ -1,24 +1,62 @@
-import {test , expect} from '@playwright/test';
-import {LoginPage} from '../pages/login.js';
-import {DashboardPage} from '../pages/dashboardPage.js';
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/login.js';
+import { DashboardPage } from '../pages/dashboardPage.js';
+import { SitePage } from '../pages/sitePage.js'
+import { MSPConfPage } from '../pages/mspconfPage.js';
+import{AttachmentPage}  from '../pages/attachments.js';
 import path from 'path';
 
-test('MSP Provide Login Test Suite', async ({page}) => {
+test('MSP Provide Login Test Suite', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const dashboardPage = new DashboardPage(page);
+    const sitePage = new SitePage(page);
+    const mspconfPage = new MSPConfPage(page);
+    const attachmentPage = new AttachmentPage(page);
     await loginPage.gotoLoginPage();
-    await loginPage.login('GCC1@vmailsink.dmm.vodafone.com','digicom123');
+    await loginPage.login('GCC1@vmailsink.dmm.vodafone.com', 'digicom123');
     await dashboardPage.navigateToOrderSubmission();
     await dashboardPage.clickProvideOrder();
     await dashboardPage.enterCustomerName('SPYDER TECH 2');
     await dashboardPage.enterBillingAccount('9557348');
     await dashboardPage.enterProductName('MSP NNI');
-    await dashboardPage.enterDateSigned();
+    await dashboardPage.enterDateToday();
     await dashboardPage.selectSalesChannel('VBI - Carrier');
     await dashboardPage.enterEndCustomerName('Spyder Tech');
     await dashboardPage.selectSalesCountry('India');
-    await dashboardPage.enterCustomerDetails('Manjunath V' , 'manju@gmail.com' , '9876543210');
-    await dashboardPage.enterVodafoneManagerDetails('Ajay Kumar' , 'ajay@vodafone.com' , '9123456780');
-    await dashboardPage.enterTechnicalContactDetails('Ravi Shankar' , 'ravi@vodafone.com' , '9988776655');
-    await page.pause()
+    await dashboardPage.enterCustomerDetails('Manjunath V', 'manju@gmail.com', '9876543210');
+    await dashboardPage.enterVodafoneManagerDetails('Ajay Kumar', 'ajay@vodafone.com', '9123456780');
+    await dashboardPage.enterTechnicalContactDetails('Ravi Shankar', 'ravi@vodafone.com', '9988776655');
+    await dashboardPage.proceedToSiteAndService();
+    await sitePage.addCreateSite();
+    await sitePage.enterSiteName('NewSite');
+    await sitePage.selectCountry('India');
+    await sitePage.enterTownCity('Bangalore');
+    await sitePage.enterStreetAddress('HSR Layout');
+    await sitePage.enterPostcode('560102');
+    await sitePage.enterSiteContactDetails('Raja', 'raja@gmail.com', '097687654321')
+    await sitePage.clickAddSite();
+    await dashboardPage.clickProceedToConf();
+    await mspconfPage.clickEditConfiguration();
+    await dashboardPage.enterDateToday();
+    await mspconfPage.enterFeasibilityID('12345');
+    await mspconfPage.selectAccessBandwidth('100M');
+    await mspconfPage.selectCustomerInterface('RJ45');
+    await mspconfPage.enterPopLocation('Acton (ACTN01)');
+    await mspconfPage.enterCrossConnection('Yes');
+    await mspconfPage.selectCCProvidedBy('Vodafone');
+    await mspconfPage.enterCCDetails('Details about CC');
+    await mspconfPage.enterFloor('3rd Floor');
+    await mspconfPage.enterRooms('Room 12');
+    await mspconfPage.selectMounting('Rack Mounted');
+    await mspconfPage.enterRackDetails('Rack ID: R-123');
+    await mspconfPage.enterFNote('Final notes for configuration');
+    await mspconfPage.clickProceedToCost();
+    await mspconfPage.enterNRC('5000');
+    await mspconfPage.enterMRC('200');
+    await mspconfPage.clickFinishService();
+    await dashboardPage.clickProceedToAttachments();
+    await attachmentPage.selectUpload1('Vodafone')
+    await attachmentPage.selectUpload2();
+    await dashboardPage.selectSubmit();
+    await page.pause();
 });
