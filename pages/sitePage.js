@@ -3,9 +3,12 @@ exports.SitePage = class sitePage {
         this.page = page;
         this.createSite = page.getByRole('button', { name: 'Add New Site' });
         this.siteName = page.locator('input[name="fcxSiteForm.fcxSiteFS.9510db92-4c3c-42e9-9c67-b3e71beb5fbe"]');
+        this.topology = page.getByLabel('', { exact: true }).first();
+        this.bulkOption = page.locator('input[name="fcxSiteForm.fcxSiteFS.1170216b-568e-4584-87ad-b710de03b9cf"]');
         this.latitude = page.locator('input[name="fcxSiteForm.fcxSiteFS.01001956-886b-4c2a-a619-c561ec835017"]');
         this.longitude = page.locator('input[name="fcxSiteForm.fcxSiteFS.29ddd5ca-ad6a-4ad4-bed8-f8bd333d8bf5"]');
         this.country = page.getByLabel('', { exact: true }).first();
+        this.wsbCode = page.locator('input[name="fcxSiteForm.fcxSiteFS.aa27a008-5848-42ec-a650-09ce998d0770"]');
         this.townCity = page.locator('input[name="fcxSiteForm.fcxSiteFS.10d23b6d-4372-46a0-9fc8-72ee1e5ae9e0"]');
         this.streetAddress = page.locator('input[name="fcxSiteForm.fcxSiteFS.0c62b9a3-f677-424f-8e4c-f711e85463d7"]');
         this.postcode = page.locator('input[name="fcxSiteForm.fcxSiteFS.fc406348-98f9-4cf2-b91b-5f4a55bb85d2"]');
@@ -21,14 +24,23 @@ exports.SitePage = class sitePage {
         this.alternateSiteContactNumber = page.locator('input[name="fcxSiteForm.fcxAlternateSiteContactFS.ed8f14f6-1f0d-450f-9c65-abd481442b93"]');
         this.additionalInformation = page.locator('textarea[name="fcxSiteForm.fcxSiteSummaryFS.223f74b0-d5bc-4839-8007-dad42615dbe3"]');
         this.addSite = page.getByRole('button', { name: 'Add Site' });
-        
+
     }
     async addCreateSite() {
         await this.createSite.click();
     }
     async enterSiteName(name) {
         await this.siteName.pressSequentially(name);
+
     }
+    async selectTopology(topology) {
+        await this.topology.click();
+        await this.page.getByRole('option', { name: topology, exact: true }).click();
+    }
+    async enterBulkOption(bulk){
+        await this.bulkOption.fill(bulk);
+    }
+
     async enterLatitude(lat) {
         await this.latitude.fill(lat);
     }
@@ -38,6 +50,9 @@ exports.SitePage = class sitePage {
     async selectCountry(country) {
         await this.country.click();
         await this.page.getByRole('option', { name: country, exact: true }).click();
+    }
+    async enterWSBCode(value){
+        await this.wsbCode.fill(value);
     }
     async enterTownCity(townCity) {
         await this.townCity.fill(townCity);

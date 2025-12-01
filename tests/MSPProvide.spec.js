@@ -5,6 +5,7 @@ import { SitePage } from '../pages/sitePage.js'
 import { MSPConfPage } from '../pages/mspconfPage.js';
 import{AttachmentPage}  from '../pages/attachments.js';
 import path from 'path';
+import { deflateRawSync } from 'zlib';
 
 test('MSP Provide Login Test Suite', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -26,7 +27,7 @@ test('MSP Provide Login Test Suite', async ({ page }) => {
     await dashboardPage.enterCustomerDetails('Manjunath V', 'manju@gmail.com', '9876543210');
     await dashboardPage.enterVodafoneManagerDetails('Ajay Kumar', 'ajay@vodafone.com', '9123456780');
     await dashboardPage.enterTechnicalContactDetails('Ravi Shankar', 'ravi@vodafone.com', '9988776655');
-    await dashboardPage.proceedToSiteAndService();
+    await dashboardPage.clickProceedToSite();
     await sitePage.addCreateSite();
     await sitePage.enterSiteName('NewSite');
     await sitePage.selectCountry('India');
@@ -58,5 +59,18 @@ test('MSP Provide Login Test Suite', async ({ page }) => {
     await attachmentPage.selectUpload1('Vodafone')
     await attachmentPage.selectUpload2();
     await dashboardPage.selectSubmit();
+    await dashboardPage.navigateOrderValidation();
+    await dashboardPage.navigateToSearchAllOrders();
+    await dashboardPage.navigateToSearch();
+    await dashboardPage.selfAssign();
+    await page.waitForTimeout(3000);
+    await dashboardPage.navigateToMyOrders();
+    await dashboardPage.navigateToSearch();
+    await dashboardPage.editOrder();
+    await dashboardPage.clickAcceptOrderHeader();
+    await page.waitForTimeout(3000);
+    await dashboardPage.clickClose();
+    await dashboardPage.clickProceedToSite();
+    await dashboardPage.clickProceedToConf();
     await page.pause();
 });
