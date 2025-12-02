@@ -53,12 +53,14 @@ exports.DashboardPage = class dashboardPage {
         this.copySubmitOrder = page.getByRole('button', { name: 'Copy Order ID & Close' });
         this.acceptOrderHeader = page.getByRole('button', { name: 'Accept Order Header' });
         this.close = page.getByRole('button', { name: 'Close' });
+        this.proceedToConfEdit = page.getByRole('img', { name: 'Edit Service' });
     }
+
 
     async clickAcceptOrderHeader() {
         await this.acceptOrderHeader.click();
     }
-    async clickClose(){
+    async clickClose() {
         await this.close.click();
     }
 
@@ -68,13 +70,13 @@ exports.DashboardPage = class dashboardPage {
     async navigateOrderValidation() {
         await this.orderValidation.click();
     }
-    async navigateToSearchAllOrders(){
+    async navigateToSearchAllOrders() {
         await this.allorders.click();
     }
-    async navigateToMyOrders(){
+    async navigateToMyOrders() {
         await this.myOrders.click();
     }
-    async navigateToSearch(){
+    async navigateToSearch() {
         await this.searchBox.click();
         await this.searchBox.press('Control+V');
     }

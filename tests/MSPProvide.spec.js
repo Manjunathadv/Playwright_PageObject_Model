@@ -3,7 +3,9 @@ import { LoginPage } from '../pages/login.js';
 import { DashboardPage } from '../pages/dashboardPage.js';
 import { SitePage } from '../pages/sitePage.js'
 import { MSPConfPage } from '../pages/mspconfPage.js';
-import{AttachmentPage}  from '../pages/attachments.js';
+import { AttachmentPage } from '../pages/attachments.js';
+import { ReferralPage } from '../pages/referralPage.js';
+import { MspvalidationPage } from '../pages/mspvalidationPage.js';
 import path from 'path';
 import { deflateRawSync } from 'zlib';
 
@@ -13,6 +15,8 @@ test('MSP Provide Login Test Suite', async ({ page }) => {
     const sitePage = new SitePage(page);
     const mspconfPage = new MSPConfPage(page);
     const attachmentPage = new AttachmentPage(page);
+    const referralPage = new ReferralPage(page);
+    const mspvalidationPage = new MspvalidationPage(page);
     await loginPage.gotoLoginPage();
     await loginPage.login('GCC1@vmailsink.dmm.vodafone.com', 'digicom123');
     await dashboardPage.navigateToOrderSubmission();
@@ -56,7 +60,7 @@ test('MSP Provide Login Test Suite', async ({ page }) => {
     await mspconfPage.enterMRC('200');
     await mspconfPage.clickFinishService();
     await dashboardPage.clickProceedToAttachments();
-    await attachmentPage.selectUpload1('Vodafone')
+    await attachmentPage.selectUpload1('Vodafone');
     await attachmentPage.selectUpload2();
     await dashboardPage.selectSubmit();
     await dashboardPage.navigateOrderValidation();
@@ -72,5 +76,9 @@ test('MSP Provide Login Test Suite', async ({ page }) => {
     await dashboardPage.clickClose();
     await dashboardPage.clickProceedToSite();
     await dashboardPage.clickProceedToConf();
+    await referralPage.submitReferral();
+    await referralPage.respondToReferral();
+    await mspvalidationPage.editValidateFlow();
+    await mspvalidationPage.amendFlow();
     await page.pause();
 });
