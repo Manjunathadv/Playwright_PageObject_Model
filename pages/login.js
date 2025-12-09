@@ -6,7 +6,7 @@ exports.LoginPage = class loginPage {
         this.loginButton = page.getByRole('button', { name: 'Sign In' });
     }
     async gotoLoginPage() {
-        await this.page.goto('https://diam.dev.digicom.vodafone.com/realms/dnext/protocol/openid-connect/auth?client_id=dnext-ui-client&redirect_uri=https%3A%2F%2Fdev.digicom.vodafone.com%2Fui%2FdigitalOrdering%2Forder-submission&state=bb6e362d-be3c-4052-88b2-80a3cc2389ef&response_mode=fragment&response_type=code&scope=openid&nonce=6f2f1a17-ab6d-4b74-81c2-ca77c50a37bc');
+        await this.page.goto('https://diam.test.digicom.vodafone.com/realms/dnext/protocol/openid-connect/auth?client_id=dnext-ui-client&redirect_uri=https%3A%2F%2Ftest.digicom.vodafone.com%2Fui%2FdigitalOrdering%2Forder%2Fnew&state=92eb208d-580e-4cf9-8a07-afda838c7ca0&response_mode=fragment&response_type=code&scope=openid&nonce=13358585-c3b5-4d0c-8a8b-931c6a309661');
      }
 
     async login(username, password) {

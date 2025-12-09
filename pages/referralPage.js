@@ -1,6 +1,7 @@
 
 // referralPage.js
 //const { expect } = require('@playwright/test');
+import { DashboardPage } from '../pages/dashboardPage.js';
 exports.ReferralPage = class referralPage {
     constructor(page) {
         this.page = page;
@@ -52,7 +53,7 @@ exports.ReferralPage = class referralPage {
         await this.page.waitForTimeout(3000);
         await this.proceedToAttachmentBtn.click();
         await this.submitReferralBtn.click();
-        //await this.page.waitForTimeout(3000);
+        await this.page.waitForTimeout(3000);
         await this.noteLabel.click();
         await this.summaryTextarea.fill('Accept');
         await this.page.waitForTimeout(3000);
@@ -61,6 +62,15 @@ exports.ReferralPage = class referralPage {
 
     // Referral Response Flow
     async respondToReferral() {
+        const dashboardPage = new DashboardPage(page);
+        await dashboardPage.navigateToOrderSubmission();
+        await this.referralsBtn.click();
+        await this.searchTextbox.click();
+        await this.searchTextbox.press('Control+V');
+        await this.menuOpenerBtn.click();
+        await this.chatMenuItem.click();
+        await this.closeImg.click();
+        await this.menuOpenerBtn.click();
         await this.respondMenuItem.click();
         await this.proceedToSiteBtn.click();
         await this.proceedToConfBtn.click();
