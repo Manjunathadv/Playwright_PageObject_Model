@@ -4,7 +4,6 @@
 exports.ReferralPage = class referralPage {
     constructor(page) {
         this.page = page;
-
         // Locators for Referral Submission
         this.initiateReferralImg = page.getByRole('img', { name: 'Initiate Referral' });
         this.proceedToSiteBtn = page.getByRole('button', { name: 'Proceed to Site & Service' });
@@ -40,7 +39,7 @@ exports.ReferralPage = class referralPage {
         this.svgPathLocator = page.locator('.MuiBox-root.css-0 > svg > path');
     }
 
-    // ✅ Referral Submission Flow
+    // Referral Submission Flow
     async submitReferral() {
         await this.initiateReferralImg.click();
         await this.page.waitForTimeout(3000);
@@ -53,14 +52,14 @@ exports.ReferralPage = class referralPage {
         await this.page.waitForTimeout(3000);
         await this.proceedToAttachmentBtn.click();
         await this.submitReferralBtn.click();
-        await this.page.waitForTimeout(3000);
+        //await this.page.waitForTimeout(3000);
         await this.noteLabel.click();
         await this.summaryTextarea.fill('Accept');
         await this.page.waitForTimeout(3000);
         await this.submitBtn.click();
     }
 
-    // ✅ Referral Response Flow
+    // Referral Response Flow
     async respondToReferral() {
         await this.respondMenuItem.click();
         await this.proceedToSiteBtn.click();

@@ -18,7 +18,7 @@ test('MSP Provide Login Test Suite', async ({ page }) => {
     const referralPage = new ReferralPage(page);
     const mspvalidationPage = new MspvalidationPage(page);
     await loginPage.gotoLoginPage();
-    await loginPage.login('GCC1@vmailsink.dmm.vodafone.com', 'digicom123');
+    await loginPage.login('gvgu1@vmailsink.dmm.vodafone.com', 'digicom123');
     await dashboardPage.navigateToOrderSubmission();
     await dashboardPage.clickProvideOrder();
     await dashboardPage.enterCustomerName('SPYDER TECH 2');
